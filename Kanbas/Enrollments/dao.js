@@ -1,8 +1,12 @@
 import Database from "../Database/index.js";
+
 export function enrollUserInCourse(userId, courseId) {
   const { enrollments } = Database;
-  enrollments.push({ _id: Date.now(), user: userId, course: courseId });
+  const newEnrollment = { _id: Date.now(), user: userId, course: courseId };
+  enrollments.push(newEnrollment);
+  return newEnrollment;
 }
+
 export function unenrollUserFromCourse(userId, courseId) {
   const { enrollments } = Database;
   Database.enrollments = enrollments.filter(
