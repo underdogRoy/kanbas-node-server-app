@@ -1,26 +1,17 @@
-import Database from "../Database/index.js";
+import model from "./model.js";
 
-export const findAssignmentsForCourse = (courseId) => {
-  const assignments = Database.assignments
-    .filter((assignment) => assignment.course === courseId);
-  return assignments;
+export const findAssignmentsForCourse = async (courseId) => {
+  return model.find({ course: courseId });
 };
 
-export const createAssignment = (assignment) => {
-  const newAssignment = { ...assignment, _id: new Date().getTime().toString() };
-  Database.assignments.push(newAssignment);
-  return newAssignment;
+export const createAssignment = async (assignment) => {
+  return model.create(assignment);
 };
 
-export const deleteAssignment = (assignmentId) => {
-  Database.assignments = Database.assignments
-    .filter((assignment) => assignment._id !== assignmentId);
-  return { status: "OK" };
+export const deleteAssignment = async (assignmentId) => {
+  return model.deleteOne({ _id: assignmentId });
 };
 
-export const updateAssignment = (aid, assignment) => {
-  Database.assignments = Database.assignments.map((a) =>
-    a._id === aid ? { ...a, ...assignment } : a
-  );
-  return assignment;
+export const updateAssignment = async (aid, assignment) => {
+  return model.updateOne({ _id: aid }, { $set: assignment });
 };

@@ -1,4 +1,4 @@
-import * as dao from "./dao.js";
+/*import * as dao from "./dao.js";
 
 export default function EnrollmentRoutes(app) {
   app.post("/api/enrollments", (req, res) => {
@@ -18,4 +18,4 @@ export default function EnrollmentRoutes(app) {
     const enrollments = dao.getEnrollmentsForUser(userId);
     res.json(enrollments);
   });
-}
+}*/
